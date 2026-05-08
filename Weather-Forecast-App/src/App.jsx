@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Flag from "react-world-flags";
 import moment from "moment";
-import search_btn from "./Assets/search_btn.png";
-import pressure from "./Assets/pressure.png";
-import humidity from "./Assets/humidity.png";
-import sunrise from "./Assets/sunrise.png";
-import sunset from "./Assets/sunset.png";
-import Sea_Level from "./Assets/sea_level.png";
-import Ground_Level from "./Assets/ground_level.png";
-import WindSpeed from "./Assets/wind.png";
-import Gust from "./Assets/gust.png";
-import WindDegree from "./Assets/compass.png";
+import search_btn from "./assets/search_btn.png";
+import pressure from "./assets/pressure.png";
+import humidity from "./assets/humidity.png";
+import sunrise from "./assets/sunrise.png";
+import sunset from "./assets/sunset.png";
+import Sea_Level from "./assets/sea_level.png";
+import Ground_Level from "./assets/ground_level.png";
+import WindSpeed from "./assets/wind.png";
+import Gust from "./assets/gust.png";
+import WindDegree from "./assets/compass.png";
 import "./App.css";
 import ClearSky from "./assets/Weather_Condition_Clips/Clear_Sky/Clear_Sky_Video_Clip.mp4";
 import Fog from "./assets/Weather_Condition_Clips/Fog/Fog_Video_Clip.mp4";
@@ -69,9 +69,13 @@ export default function App() {
     "50n": " https://openweathermap.org/img/wn/50n@2x.png",
   };
 
+  const API_URL = import.meta.env.MODE === "development" ?
+    "http://localhost:5000"
+    : "https://weather-backend-vg95.onrender.com"
+
   const handleWeatherData = async (city) => {
     try {
-      const response = await fetch(`http://localhost:5000/weather?q=${city}`);
+      const response = await fetch(`${API_URL}/weather?q=${city}`);
       const data = await response.json();
       console.log(data);
 
